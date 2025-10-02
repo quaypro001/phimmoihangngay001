@@ -40,17 +40,17 @@
             max-height: 500px;
             overflow-y: auto;
         }
-        .movie-item, .episode-item {
+        .movie-item, .episode-item, .server-item {
             padding: 10px;
             margin: 5px 0;
             background-color: #333;
             border-radius: 5px;
             cursor: pointer;
         }
-        .movie-item:hover, .episode-item:hover {
+        .movie-item:hover, .episode-item:hover, .server-item:hover {
             background-color: #444;
         }
-        .movie-item.active, .episode-item.active {
+        .movie-item.active, .episode-item.active, .server-item.active {
             background-color: #e50914;
         }
         .video-container {
@@ -87,10 +87,10 @@
             margin-top: 20px;
             text-align: center;
         }
-        .season-selector {
+        .season-selector, .server-selector {
             margin-bottom: 10px;
         }
-        .season-button {
+        .season-button, .server-button {
             padding: 5px 10px;
             margin: 0 5px;
             background-color: #333;
@@ -99,10 +99,10 @@
             border-radius: 3px;
             cursor: pointer;
         }
-        .season-button.active {
+        .season-button.active, .server-button.active {
             background-color: #e50914;
         }
-        .season-button:hover {
+        .season-button:hover, .server-button:hover {
             background-color: #444;
         }
     </style>
@@ -115,6 +115,7 @@
         <div class="movie-list" id="movieList"></div>
         <div class="episode-list" id="episodeList">
             <div class="season-selector" id="seasonSelector"></div>
+            <div class="server-selector" id="serverSelector"></div>
         </div>
         <div class="video-container">
             <iframe id="videoPlayer" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -130,10 +131,12 @@
         const movieList = document.getElementById('movieList');
         const episodeList = document.getElementById('episodeList');
         const seasonSelector = document.getElementById('seasonSelector');
+        const serverSelector = document.getElementById('serverSelector');
         const description = document.getElementById('description');
         let movies = [];
         let selectedMovie = null;
         let selectedSeason = 0;
+        let selectedServer = 0;
         let selectedMovieData = null;
 
         // Tải danh sách phim từ movies.json
@@ -163,6 +166,7 @@
             document.querySelectorAll('.movie-item').forEach(item => item.classList.remove('active'));
             movieList.children[index].classList.add('active');
             selectedSeason = 0;
+            selectedServer = 0;
 
             // Tải file JSON chi tiết của phim
             fetch(selectedMovie.dataFile)
@@ -170,10 +174,11 @@
                 .then(data => {
                     selectedMovieData = data;
                     renderSeasonSelector();
+                    renderServerSelector();
                     renderEpisodeList();
                     description.innerHTML = `<strong>${selectedMovie.title}</strong><br>${selectedMovie.description || 'Không có mô tả.'}`;
                     if (selectedMovieData.seasons && selectedMovieData.seasons[0] && selectedMovieData.seasons[0].episodes.length > 0) {
-                        selectEpisode(0); // Phát tập 1 của mùa 1
+                        selectEpisode(0); // Phát tập 1 của mùa 1, server đầu tiên
                     } else {
                         videoPlayer.src = '';
                     }
@@ -196,7 +201,7 @@
                     seasonSelector.appendChild(seasonButton);
                 });
             } else {
-                seasonSelector.innerHTML = '<p>Chọn một tập để xem.</p>';
+                seasonSelector.innerHTML = '<p>Chọn một mùa để xem tập.</p>';
             }
         }
 
@@ -205,11 +210,45 @@
             selectedSeason = index;
             document.querySelectorAll('.season-button').forEach(btn => btn.classList.remove('active'));
             seasonSelector.children[index].classList.add('active');
+            renderServerSelector();
             renderEpisodeList();
             if (selectedMovieData.seasons[selectedSeason].episodes.length > 0) {
                 selectEpisode(0); // Phát tập 1 của mùa được chọn
             } else {
                 videoPlayer.src = '';
+            }
+        }
+
+        // Hiển thị selector server
+        function renderServerSelector() {
+            serverSelector.innerHTML = '';
+            if (selectedMovieData && selectedMovieData.seasons && selectedMovieData.seasons[selectedSeason] && selectedMovieData.seasons[selectedSeason].servers) {
+                selectedMovieData.seasons[selectedSeason].servers.forEach((server, index) => {
+                    const serverButton = document.createElement('button');
+                    serverButton.className = 'server-button';
+                    serverButton.textContent = server.name;
+                    serverButton.onclick = () => selectServer(index);
+                    if (index === selectedServer) {
+                        serverButton.classList.add('active');
+                    }
+                    serverSelector.appendChild(serverButton);
+                });
+            } else {
+                serverSelector.innerHTML = '<p>Chọn server để xem.</p>';
+            }
+        }
+
+        // Chọn server và cập nhật URL cho tập hiện tại
+        function selectServer(index) {
+            selectedServer = index;
+            document.querySelectorAll('.server-button').forEach(btn => btn.classList.remove('active'));
+            serverSelector.children[index].classList.add('active');
+            // Cập nhật URL video cho tập hiện tại (nếu có tập đang chọn)
+            if (selectedMovieData.seasons[selectedSeason].episodes.length > 0 && episodeList.querySelector('.episode-item.active')) {
+                const currentEpisodeIndex = Array.from(episodeList.querySelectorAll('.episode-item')).findIndex(item => item.classList.contains('active'));
+                if (currentEpisodeIndex !== -1) {
+                    selectEpisode(currentEpisodeIndex);
+                }
             }
         }
 
@@ -231,16 +270,20 @@
                 });
                 episodeList.innerHTML = '';
                 episodeList.appendChild(seasonSelector);
+                episodeList.appendChild(serverSelector);
                 episodeList.appendChild(episodeContainer);
             } else {
                 episodeList.innerHTML = '<p>Chọn một mùa để xem tập.</p>';
             }
         }
 
-        // Chọn tập và tải video vào iframe
+        // Chọn tập và tải video từ server được chọn
         function selectEpisode(index) {
-            const episode = selectedMovieData.seasons[selectedSeason].episodes[index];
-            videoPlayer.src = episode.url;
+            const season = selectedMovieData.seasons[selectedSeason];
+            const episode = season.episodes[index];
+            const server = season.servers[selectedServer];
+            const serverUrl = server.urls[episode.serverIndex || 0]; // Sử dụng serverIndex nếu có, mặc định 0
+            videoPlayer.src = serverUrl;
             document.querySelectorAll('.episode-item').forEach(item => item.classList.remove('active'));
             episodeList.querySelectorAll('.episode-item')[index].classList.add('active');
         }
