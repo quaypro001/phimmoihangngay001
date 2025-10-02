@@ -1,44 +1,131 @@
 {
+    "servers": [
+        { "name": "OP" },
+        { "name": "NC" },
+        { "name": "KK" }
+    ],
     "seasons": [
         {
             "episodes": [
                 {
                     "title": "Tập 1: Stepping Stone",
-                    "serverIndex": 0
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/3aeb0ff7fa8b7349f5f8d6e070535af9",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=e12088e04d5b24c6820d0563272cccf2",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/qA2ouGvQ/index.m3u8"
+                    }
                 },
                 {
                     "title": "Tập 2: Wrong Side of the Bars",
-                    "serverIndex": 1
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/1372c3d1724fa299700974106f330ccc",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=752ceafb8f5106ae239cd16c7fafd03a",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/RBzLlKHA/index.m3u8"
+                    }
                 },
                 {
                     "title": "Tập 3: Chin Check",
-                    "serverIndex": 2
-                }
-            ],
-            "servers": [
-                {
-                    "name": "OP",
-                    "urls": [
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4"
-                    ]
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/eb789e741cbc8792f18e3e7049e6f4ef",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=4b963d061b57e3185cbba194f8bd724e",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/0rgzBza0/index.m3u8"
+                    }
                 },
                 {
-                    "name": "NC",
-                    "urls": [
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4"
-                    ]
+                    "title": "Tập 4: Now Is Always Temporary",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/224f6f4f54725cad077b4ed22fc90fc6",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=ff3fa63e162d7449eec62c4de78cbd4a",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/bkLQY1SY/index.m3u8"
+                    }
                 },
                 {
-                    "name": "KK",
-                    "urls": [
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4"
-                    ]
+                    "title": "Tập 5: Thirty Balloons",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/84819624dc1b2a3adc5cf13082ccf54d",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=482152cfce86a5ce7a294cba54c9d265",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/R4EEbBPc/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 6: Conventions",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/4e4c4d563fa79d9a008be459fe0ffe3d",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=372dfc6abb98e32c834c1766e4dbb96c",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/SJ7ni4ys/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 7: The Price We Pay",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/2b4b5fe4876da46afece8d941de64fd2",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=aa3678535a41a515ec30f2801abf525f",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/VzCScE3o/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 8: Different Mistakes",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/8067be2623f432f245c659f9d0c85325",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=02cfa727e9f5dcffd232ce206e7e1ca3",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/CtxMBfSN/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 9: A Material Witness",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/43533afcfd8cdc5990d3bec6bcffccc1",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=f8ddb86803d0f6648e4563facd4af1f1",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/17UcTjRy/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 10: At Least It's Justice",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/eda65102a785a9ea6a6552c3f808a32d",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=a78d9ebd3fba5abc07ad006e034257f3",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/ZIl5ZH8k/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 11: Turn the Light Off",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/890f3707a3d8af2ca24401484a6ee64a",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=d4f9c4f58296d1f56dd5c3a861a84825",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/Nzd0sBRA/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 12: 8:30 PM",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/0607fc0e91072d38ee2f2ba2cf07b77c",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=c163078e5ff56309284c62809db0f35f",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/TtWoNcrO/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 13: My Way",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/a3b6a6054d88d6792984afefa51cb475",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=415933b7ab47816b23d69327563b1b65",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/twfngRAW/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 14: The Docks",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/9c3916c3064354b7c58f2ba44a6d6a61",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=59b68f2c7e3f0379ad4fd3e21bac13b4",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/qIMCktat/index.m3u8"
+                    }
+                },
+                {
+                    "title": "Tập 15: A Beautiful Friendship",
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/81e52e07201f7512151e362fd391ba0d",
+                        "NC": "https://embed11.streamc.xyz/embed.php?hash=f1f0594d6b3e3d40f0dc7869abf9ccaf",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240330/hIYPgUG2/index.m3u8"
+                    }
                 }
             ]
         },
@@ -46,41 +133,27 @@
             "episodes": [
                 {
                     "title": "Tập 1: Call It Macaroni",
-                    "serverIndex": 1
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/c68d176afebc29d2b60db6dcfb35a5b4",
+                        "NC": "https://embed13.streamc.xyz/embed.php?hash=894f9aa33e330f4c860f1f9956708848",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240331/r6nvfIfl/index.m3u8"
+                    }
                 },
                 {
                     "title": "Tập 2: Get My Cigarettes",
-                    "serverIndex": 2
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/5c3ec601ef8db133df10c6eb6ddd4102",
+                        "NC": "https://embed13.streamc.xyz/embed.php?hash=06183d9ebd1f7b84bcddb55a17e84279",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240331/s4VU4WJC/index.m3u8"
+                    }
                 },
                 {
                     "title": "Tập 3: The Weigh Station",
-                    "serverIndex": 0
-                }
-            ],
-            "servers": [
-                {
-                    "name": "OP",
-                    "urls": [
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4"
-                    ]
-                },
-                {
-                    "name": "NC",
-                    "urls": [
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4"
-                    ]
-                },
-                {
-                    "name": "KK",
-                    "urls": [
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4"
-                    ]
+                    "urls": {
+                        "OP": "https://vip.opstream15.com/share/1e30822b8bd1d607bb099fa9387b8976",
+                        "NC": "https://embed13.streamc.xyz/embed.php?hash=fee1be80f6ddc5f3489cf13695f0a8aa",
+                        "KK": "https://player.phimapi.com/player/?url=https://s3.phim1280.tv/20240331/Dheux97A/index.m3u8"
+                    }
                 }
             ]
         },
@@ -88,41 +161,27 @@
             "episodes": [
                 {
                     "title": "Tập 1: Life Is Fluid",
-                    "serverIndex": 2
+                    "urls": {
+                        "OP": "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "NC": "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "KK": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    }
                 },
                 {
                     "title": "Tập 2: Natural Born Storyteller",
-                    "serverIndex": 0
+                    "urls": {
+                        "OP": "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "NC": "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "KK": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    }
                 },
                 {
                     "title": "Tập 3: Actual Physical Violence",
-                    "serverIndex": 1
-                }
-            ],
-            "servers": [
-                {
-                    "name": "OP",
-                    "urls": [
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4"
-                    ]
-                },
-                {
-                    "name": "NC",
-                    "urls": [
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4"
-                    ]
-                },
-                {
-                    "name": "KK",
-                    "urls": [
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4",
-                        "https://www.youtube.com/embed/ScMzIvxBSi4"
-                    ]
+                    "urls": {
+                        "OP": "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "NC": "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "KK": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    }
                 }
             ]
         }
