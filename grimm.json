@@ -1,0 +1,52 @@
+{
+    "seasons": [
+        {
+            "episodes": [
+                {
+                    "title": "Tập 1: Pilot",
+                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                },
+                {
+                    "title": "Tập 2: Bears Will Be Bears",
+                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                },
+                {
+                    "title": "Tập 3: BeeWare",
+                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                }
+            ]
+        },
+        {
+            "episodes": [
+                {
+                    "title": "Tập 1: Bad Teeth",
+                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                },
+                {
+                    "title": "Tập 2: The Kiss",
+                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                },
+                {
+                    "title": "Tập 3: Bad Moon Rising",
+                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                }
+            ]
+        },
+        {
+            "episodes": [
+                {
+                    "title": "Tập 1: The Ungrateful Dead",
+                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                },
+                {
+                    "title": "Tập 2: PTZD",
+                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                },
+                {
+                    "title": "Tập 3: A Dish Best Served Cold",
+                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                }
+            ]
+        }
+    ]
+}
