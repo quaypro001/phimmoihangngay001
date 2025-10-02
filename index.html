@@ -141,7 +141,7 @@
                 width: 100%;
             }
             iframe {
-                height: 200px; /* Giảm chiều cao iframe trên di động */
+                height: 200px;
             }
             .header h1 {
                 font-size: 1.5em;
@@ -308,8 +308,8 @@
         // Hiển thị selector server
         function renderServerSelector() {
             serverSelector.innerHTML = '';
-            if (selectedMovieData && selectedMovieData.seasons && selectedMovieData.seasons[selectedSeason] && selectedMovieData.seasons[selectedSeason].servers) {
-                selectedMovieData.seasons[selectedSeason].servers.forEach((server, index) => {
+            if (selectedMovieData && selectedMovieData.servers) {
+                selectedMovieData.servers.forEach((server, index) => {
                     const serverButton = document.createElement('button');
                     serverButton.className = 'server-button';
                     serverButton.textContent = server.name;
@@ -365,10 +365,9 @@
 
         // Chọn tập và tải video từ server được chọn
         function selectEpisode(index) {
-            const season = selectedMovieData.seasons[selectedSeason];
-            const episode = season.episodes[index];
-            const server = season.servers[selectedServer];
-            const serverUrl = server.urls[episode.serverIndex || 0];
+            const episode = selectedMovieData.seasons[selectedSeason].episodes[index];
+            const server = selectedMovieData.servers[selectedServer];
+            const serverUrl = episode.urls[server.name] || '';
             videoPlayer.src = serverUrl;
             document.querySelectorAll('.episode-item').forEach(item => item.classList.remove('active'));
             episodeList.querySelectorAll('.episode-item')[index].classList.add('active');
