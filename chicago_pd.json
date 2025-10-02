@@ -4,15 +4,41 @@
             "episodes": [
                 {
                     "title": "Tập 1: Stepping Stone",
-                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    "serverIndex": 0
                 },
                 {
                     "title": "Tập 2: Wrong Side of the Bars",
-                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    "serverIndex": 1
                 },
                 {
                     "title": "Tập 3: Chin Check",
-                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    "serverIndex": 2
+                }
+            ],
+            "servers": [
+                {
+                    "name": "OP",
+                    "urls": [
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    ]
+                },
+                {
+                    "name": "NC",
+                    "urls": [
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    ]
+                },
+                {
+                    "name": "KK",
+                    "urls": [
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    ]
                 }
             ]
         },
@@ -20,15 +46,41 @@
             "episodes": [
                 {
                     "title": "Tập 1: Call It Macaroni",
-                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    "serverIndex": 1
                 },
                 {
                     "title": "Tập 2: Get My Cigarettes",
-                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    "serverIndex": 2
                 },
                 {
                     "title": "Tập 3: The Weigh Station",
-                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    "serverIndex": 0
+                }
+            ],
+            "servers": [
+                {
+                    "name": "OP",
+                    "urls": [
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    ]
+                },
+                {
+                    "name": "NC",
+                    "urls": [
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    ]
+                },
+                {
+                    "name": "KK",
+                    "urls": [
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    ]
                 }
             ]
         },
@@ -36,15 +88,41 @@
             "episodes": [
                 {
                     "title": "Tập 1: Life Is Fluid",
-                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    "serverIndex": 2
                 },
                 {
                     "title": "Tập 2: Natural Born Storyteller",
-                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    "serverIndex": 0
                 },
                 {
                     "title": "Tập 3: Actual Physical Violence",
-                    "url": "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    "serverIndex": 1
+                }
+            ],
+            "servers": [
+                {
+                    "name": "OP",
+                    "urls": [
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    ]
+                },
+                {
+                    "name": "NC",
+                    "urls": [
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    ]
+                },
+                {
+                    "name": "KK",
+                    "urls": [
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4",
+                        "https://www.youtube.com/embed/ScMzIvxBSi4"
+                    ]
                 }
             ]
         }
