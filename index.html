@@ -18,34 +18,40 @@
         .header {
             width: 100%;
             background-color: #000;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
         }
         .header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2em;
         }
         .content {
             max-width: 1200px;
             width: 100%;
-            margin: 20px;
+            margin: 10px;
             display: flex;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .movie-list, .episode-list {
             flex: 1;
+            min-width: 200px;
             background-color: #222;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
-            max-height: 500px;
+            max-height: 400px;
             overflow-y: auto;
         }
+        .movie-list.hidden {
+            display: none;
+        }
         .movie-item, .episode-item, .server-item {
-            padding: 10px;
+            padding: 8px;
             margin: 5px 0;
             background-color: #333;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 0.9em;
         }
         .movie-item:hover, .episode-item:hover, .server-item:hover {
             background-color: #444;
@@ -55,6 +61,7 @@
         }
         .video-container {
             flex: 2;
+            min-width: 300px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -68,12 +75,12 @@
         }
         .controls {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-top: 10px;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 8px 15px;
+            font-size: 0.9em;
             cursor: pointer;
             background-color: #e50914;
             color: #fff;
@@ -84,20 +91,25 @@
             background-color: #b2070f;
         }
         .description {
-            margin-top: 20px;
+            margin-top: 15px;
             text-align: center;
+            font-size: 0.9em;
         }
         .season-selector, .server-selector {
             margin-bottom: 10px;
+            display: flex;
+            overflow-x: auto;
+            gap: 5px;
         }
         .season-button, .server-button {
             padding: 5px 10px;
-            margin: 0 5px;
             background-color: #333;
             color: #fff;
             border: none;
             border-radius: 3px;
             cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.85em;
         }
         .season-button.active, .server-button.active {
             background-color: #e50914;
@@ -105,11 +117,67 @@
         .season-button:hover, .server-button:hover {
             background-color: #444;
         }
+        .toggle-movie-list {
+            display: none;
+            padding: 10px;
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .toggle-movie-list:hover {
+            background-color: #b2070f;
+        }
+
+        /* Responsive cho tablet và di động */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .movie-list, .episode-list, .video-container {
+                flex: none;
+                width: 100%;
+            }
+            iframe {
+                height: 200px; /* Giảm chiều cao iframe trên di động */
+            }
+            .header h1 {
+                font-size: 1.5em;
+            }
+            .toggle-movie-list {
+                display: block;
+            }
+            .movie-list {
+                display: none;
+            }
+            .movie-list.visible {
+                display: block;
+            }
+        }
+        @media (max-width: 480px) {
+            .movie-list, .episode-list {
+                padding: 10px;
+                max-height: 300px;
+            }
+            .movie-item, .episode-item, .server-item {
+                font-size: 0.8em;
+            }
+            button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+            .description {
+                font-size: 0.8em;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>Trang Xem Phim Nhiều Tập</h1>
+        <button class="toggle-movie-list" onclick="toggleMovieList()">Danh sách phim</button>
     </div>
     <div class="content">
         <div class="movie-list" id="movieList"></div>
@@ -155,9 +223,26 @@
                 const movieItem = document.createElement('div');
                 movieItem.className = 'movie-item';
                 movieItem.textContent = movie.title;
-                movieItem.onclick = () => selectMovie(index);
+                movieItem.onclick = () => {
+                    selectMovie(index);
+                    if (window.innerWidth <= 768) {
+                        movieList.classList.remove('visible');
+                        movieList.classList.add('hidden');
+                    }
+                };
                 movieList.appendChild(movieItem);
             });
+        }
+
+        // Toggle danh sách phim trên di động
+        function toggleMovieList() {
+            if (movieList.classList.contains('visible')) {
+                movieList.classList.remove('visible');
+                movieList.classList.add('hidden');
+            } else {
+                movieList.classList.remove('hidden');
+                movieList.classList.add('visible');
+            }
         }
 
         // Chọn phim và tải dữ liệu chi tiết từ file JSON của phim
@@ -210,6 +295,7 @@
             selectedSeason = index;
             document.querySelectorAll('.season-button').forEach(btn => btn.classList.remove('active'));
             seasonSelector.children[index].classList.add('active');
+            selectedServer = 0; // Reset server khi chuyển mùa
             renderServerSelector();
             renderEpisodeList();
             if (selectedMovieData.seasons[selectedSeason].episodes.length > 0) {
@@ -243,7 +329,7 @@
             selectedServer = index;
             document.querySelectorAll('.server-button').forEach(btn => btn.classList.remove('active'));
             serverSelector.children[index].classList.add('active');
-            // Cập nhật URL video cho tập hiện tại (nếu có tập đang chọn)
+            // Cập nhật URL video cho tập hiện tại
             if (selectedMovieData.seasons[selectedSeason].episodes.length > 0 && episodeList.querySelector('.episode-item.active')) {
                 const currentEpisodeIndex = Array.from(episodeList.querySelectorAll('.episode-item')).findIndex(item => item.classList.contains('active'));
                 if (currentEpisodeIndex !== -1) {
@@ -282,7 +368,7 @@
             const season = selectedMovieData.seasons[selectedSeason];
             const episode = season.episodes[index];
             const server = season.servers[selectedServer];
-            const serverUrl = server.urls[episode.serverIndex || 0]; // Sử dụng serverIndex nếu có, mặc định 0
+            const serverUrl = server.urls[episode.serverIndex || 0];
             videoPlayer.src = serverUrl;
             document.querySelectorAll('.episode-item').forEach(item => item.classList.remove('active'));
             episodeList.querySelectorAll('.episode-item')[index].classList.add('active');
