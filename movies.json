@@ -1,0 +1,12 @@
+[
+    {
+        "title": "Grimm",
+        "description": "Grimm là series phim hành động, kinh dị, giả tưởng theo chân Nick Burkhardt - một thám tử phát hiện ra anh là Grimm, người bảo vệ thế giới khỏi các sinh vật siêu nhiên gọi là Wesen. Anh phải cân bằng giữa cuộc sống thường ngày và sứ mệnh bí mật.",
+        "dataFile": "grimm.json"
+    },
+    {
+        "title": "Chicago P.D.",
+        "description": "Chicago P.D. là series phim tội phạm, hành động xoay quanh Đơn vị Tình báo của Sở Cảnh sát Chicago, dẫn dắt bởi Trung úy Hank Voight. Họ đối mặt với những vụ án phức tạp, tham nhũng và những lựa chọn đạo đức khó khăn.",
+        "dataFile": "chicago_pd.json"
+    }
+]
