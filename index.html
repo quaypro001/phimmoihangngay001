@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Xem Phim Nhiều Tập</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .header {
+            width: 100%;
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .movie-list, .episode-list {
+            flex: 1;
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .movie-item, .episode-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #333;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .movie-item:hover, .episode-item:hover {
+            background-color: #444;
+        }
+        .movie-item.active, .episode-item.active {
+            background-color: #e50914;
+        }
+        .video-container {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border-radius: 8px;
+            border: none;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #b2070f;
+        }
+        .description {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .season-selector {
+            margin-bottom: 10px;
+        }
+        .season-button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .season-button.active {
+            background-color: #e50914;
+        }
+        .season-button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Trang Xem Phim Nhiều Tập</h1>
+    </div>
+    <div class="content">
+        <div class="movie-list" id="movieList"></div>
+        <div class="episode-list" id="episodeList">
+            <div class="season-selector" id="seasonSelector"></div>
+        </div>
+        <div class="video-container">
+            <iframe id="videoPlayer" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            <div class="controls">
+                <button onclick="reloadIframe()">Reload</button>
+            </div>
+            <div class="description" id="description"></div>
+        </div>
+    </div>
+
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const movieList = document.getElementById('movieList');
+        const episodeList = document.getElementById('episodeList');
+        const seasonSelector = document.getElementById('seasonSelector');
+        const description = document.getElementById('description');
+        let movies = [];
+        let selectedMovie = null;
+        let selectedSeason = 0;
+        let selectedMovieData = null;
+
+        // Tải danh sách phim từ movies.json
+        fetch('movies.json')
+            .then(response => response.json())
+            .then(data => {
+                movies = data;
+                renderMovieList();
+            })
+            .catch(error => console.error('Lỗi khi tải movies.json:', error));
+
+        // Hiển thị danh sách phim
+        function renderMovieList() {
+            movieList.innerHTML = '';
+            movies.forEach((movie, index) => {
+                const movieItem = document.createElement('div');
+                movieItem.className = 'movie-item';
+                movieItem.textContent = movie.title;
+                movieItem.onclick = () => selectMovie(index);
+                movieList.appendChild(movieItem);
+            });
+        }
+
+        // Chọn phim và tải dữ liệu chi tiết từ file JSON của phim
+        function selectMovie(index) {
+            selectedMovie = movies[index];
+            document.querySelectorAll('.movie-item').forEach(item => item.classList.remove('active'));
+            movieList.children[index].classList.add('active');
+            selectedSeason = 0;
+
+            // Tải file JSON chi tiết của phim
+            fetch(selectedMovie.dataFile)
+                .then(response => response.json())
+                .then(data => {
+                    selectedMovieData = data;
+                    renderSeasonSelector();
+                    renderEpisodeList();
+                    description.innerHTML = `<strong>${selectedMovie.title}</strong><br>${selectedMovie.description || 'Không có mô tả.'}`;
+                    if (selectedMovieData.seasons && selectedMovieData.seasons[0] && selectedMovieData.seasons[0].episodes.length > 0) {
+                        selectEpisode(0); // Phát tập 1 của mùa 1
+                    } else {
+                        videoPlayer.src = '';
+                    }
+                })
+                .catch(error => console.error(`Lỗi khi tải ${selectedMovie.dataFile}:`, error));
+        }
+
+        // Hiển thị selector mùa
+        function renderSeasonSelector() {
+            seasonSelector.innerHTML = '';
+            if (selectedMovieData && selectedMovieData.seasons) {
+                selectedMovieData.seasons.forEach((season, index) => {
+                    const seasonButton = document.createElement('button');
+                    seasonButton.className = 'season-button';
+                    seasonButton.textContent = `Mùa ${index + 1} (${season.episodes.length} tập)`;
+                    seasonButton.onclick = () => selectSeason(index);
+                    if (index === selectedSeason) {
+                        seasonButton.classList.add('active');
+                    }
+                    seasonSelector.appendChild(seasonButton);
+                });
+            } else {
+                seasonSelector.innerHTML = '<p>Chọn một tập để xem.</p>';
+            }
+        }
+
+        // Chọn mùa và phát tập 1
+        function selectSeason(index) {
+            selectedSeason = index;
+            document.querySelectorAll('.season-button').forEach(btn => btn.classList.remove('active'));
+            seasonSelector.children[index].classList.add('active');
+            renderEpisodeList();
+            if (selectedMovieData.seasons[selectedSeason].episodes.length > 0) {
+                selectEpisode(0); // Phát tập 1 của mùa được chọn
+            } else {
+                videoPlayer.src = '';
+            }
+        }
+
+        // Hiển thị danh sách tập
+        function renderEpisodeList() {
+            const episodeContainer = episodeList.querySelector('.episode-container') || document.createElement('div');
+            episodeContainer.className = 'episode-container';
+            episodeContainer.innerHTML = '';
+            if (selectedMovieData && selectedMovieData.seasons && selectedMovieData.seasons[selectedSeason]) {
+                selectedMovieData.seasons[selectedSeason].episodes.forEach((episode, index) => {
+                    const episodeItem = document.createElement('div');
+                    episodeItem.className = 'episode-item';
+                    episodeItem.textContent = episode.title;
+                    episodeItem.onclick = () => selectEpisode(index);
+                    if (index === 0) {
+                        episodeItem.classList.add('active'); // Đánh dấu tập 1
+                    }
+                    episodeContainer.appendChild(episodeItem);
+                });
+                episodeList.innerHTML = '';
+                episodeList.appendChild(seasonSelector);
+                episodeList.appendChild(episodeContainer);
+            } else {
+                episodeList.innerHTML = '<p>Chọn một mùa để xem tập.</p>';
+            }
+        }
+
+        // Chọn tập và tải video vào iframe
+        function selectEpisode(index) {
+            const episode = selectedMovieData.seasons[selectedSeason].episodes[index];
+            videoPlayer.src = episode.url;
+            document.querySelectorAll('.episode-item').forEach(item => item.classList.remove('active'));
+            episodeList.querySelectorAll('.episode-item')[index].classList.add('active');
+        }
+
+        // Reload iframe để phát lại video
+        function reloadIframe() {
+            const currentSrc = videoPlayer.src;
+            videoPlayer.src = '';
+            setTimeout(() => {
+                videoPlayer.src = currentSrc;
+            }, 100);
+        }
+    </script>
+</body>
+</html>
